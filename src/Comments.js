@@ -33,7 +33,14 @@ class Comments extends Component {
         return (
             <div className="comments">
             <ul>
-                {this.state.comments.map(comment => <li>{comment.text} at {comment.time}</li>)}
+                {this.state.comments.map(comment => <li>{comment.text} at {new Intl.DateTimeFormat('en-GB', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+}).format(comment.time)}</li>)}
                 </ul>
 
             <form onSubmit={this.addComment}>
