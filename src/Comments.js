@@ -17,7 +17,10 @@ class Comments extends Component {
 
         const comments = [...this.state.comments]
 
-        comments.push(form.comment.value)
+        comments.push({
+            text: form.comment.value,
+            time: Date.now()
+        })
 
         this.setState({ comments })
 
@@ -28,10 +31,16 @@ class Comments extends Component {
     render () {
         if (this.props.on) {
         return (
+            <div className="comments">
+            <ul>
+                {this.state.comments.map(comment => <li>{comment.text} at {comment.time}</li>)}
+                </ul>
+
             <form onSubmit={this.addComment}>
             <textarea name="comment"></textarea>
             <button type="submit">Submit</button>
             </form>
+            </div>
         )
     } else {
         return null
